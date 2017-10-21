@@ -1,3 +1,5 @@
+# DON'T FORGET TO FIX `enjarify` WITH `greadlink`
+
 # apk2java
 A simple Shell script which allows for one step decompilation of apk file via various decompilers. This script was written and tested on Android Tamer project.
 
