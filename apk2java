@@ -21,7 +21,7 @@ echo "[*] Starting APK Decompile"
 JAR_KEEP=1
 APK_NAME=`basename "$1"`
 c=`basename "$APK_NAME" .apk`
-FULL_PTH=`readlink -f "$1"`
+FULL_PTH=`greadlink -f "$1"`
 APK_DIR_PATH=`dirname "$FULL_PTH"`
 
 if [[ $# -eq 2 ]]
@@ -67,8 +67,8 @@ mkdir -p ../src/jadx
 jadx -d ../src/jadx "$SRC_DIR""/jar/""$c""_enjarify.jar"
 jar -xf "$c""_enjarify.jar"
 
-echo "[*] Source Extraction via JAD from class files"
-jad -o -r -sjava -d../src/jad './**/*.class'
+echo "[*] Source Extraction via Procyon from enjarify output jar"
+java -jar procyon.jar -jar "$SRC_DIR""/jar/""$c""_enjarify.jar" -o "$SRC_DIR""/src"
 
 if [ $JAR_KEEP -eq 0 ]
 then
